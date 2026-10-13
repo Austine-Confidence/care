@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarePoint Hospital | Patient Portal</title>
+    <link rel="stylesheet" href="./STYLE/style.css">
+</head>
+
+<body>
+
+    <!-- AUTHENTICATION -->
+    <main id="authScreen" class="auth-screen">
+        <section class="auth-brand">
+            <div class="brand-logo">✚</div>
+            <h1>CarePoint<span> Hospital</span></h1>
+            <p>Compassionate care. Better health. A healthier future.</p>
+            <div class="auth-illustration">✚</div>
+            <h2>Your health, our priority.</h2>
+            <p>Connect with doctors, manage appointments and access your patient dashboard.</p>
+        </section>
+
+        <section class="auth-panel">
+            <div class="auth-box">
+                <div class="mobile-brand">✚ CarePoint Hospital</div>
+
+                <div id="loginForm">
+                    <span class="eyebrow">PATIENT PORTAL</span>
+                    <h2>Welcome back!</h2>
+                    <p class="muted">Sign in to manage your healthcare.</p>
+
+                    <form id="login">
+                        <label for="loginEmail">Email address</label>
+                        <input id="loginEmail" type="email" placeholder="you@example.com" required>
+
+                        <label for="loginPassword">Password</label>
+                        <div class="password-field">
+                            <input id="loginPassword" type="password" placeholder="Enter your password" required>
+                            <button type="button" class="show-password" data-target="loginPassword">Show</button>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="remember"><input type="checkbox" id="rememberMe"> Remember me</label>
+                            <a href="#" id="forgotPassword">Forgot password?</a>
+                        </div>
+
+                        <button class="btn primary full" type="submit">Sign in →</button>
+                        <p id="loginMessage" class="message" aria-live="polite"></p>
+                    </form>
+
+                    <div class="auth-divider"><span>NEW TO CAREPOINT?</span></div>
+                    <p class="switch-auth">Don't have an account? <button type="button" id="showRegister">Create
+                            account</button></p>
+                    <p class="auth-note">🔒 Secure patient access</p>
+                </div>
+
+                <div id="registerForm" class="hidden">
+                    <span class="eyebrow">JOIN CAREPOINT</span>
+                    <h2>Create your account</h2>
+                    <p class="muted">Register to manage your appointments.</p>
+
+                    <form id="register">
+                        <label for="registerName">Full name</label>
+                        <input id="registerName" type="text" placeholder="Your full name" required>
+
+                        <label for="registerEmail">Email address</label>
+                        <input id="registerEmail" type="email" placeholder="you@example.com" required>
+
+                        <label for="registerPassword">Create password</label>
+                        <div class="password-field">
+                            <input id="registerPassword" type="password" minlength="8"
+                                placeholder="At least 8 characters" required>
+                            <button type="button" class="show-password" data-target="registerPassword">Show</button>
+                        </div>
+
+                        <label class="remember terms">
+                            <input type="checkbox" id="agreeTerms" required>
+                            I agree to the terms of use.
+                        </label>
+
+                        <button class="btn primary full" type="submit">Create account →</button>
+                        <p id="registerMessage" class="message" aria-live="polite"></p>
+                    </form>
+
+                    <p class="switch-auth">Already registered? <button type="button" id="showLogin">Sign in</button></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PATIENT DASHBOARD -->
+    <main id="dashboard" class="hidden">
+        <aside class="sidebar" id="sidebar">
+            <a class="logo" href="#overview"><span>✚</span> CarePoint</a>
+            <p class="side-label">PATIENT MENU</p>
+
+            <nav class="side-nav">
+                <a href="#overview" class="nav-link active" data-section="overview">▦ Dashboard</a>
+                <a href="#appointments" class="nav-link" data-section="appointments">▣ Appointments</a>
+                <a href="#doctors" class="nav-link" data-section="doctors">♙ Find a doctor</a>
+                <a href="#services" class="nav-link" data-section="services">✚ Medical services</a>
+                <a href="#profile" class="nav-link" data-section="profile">◎ My profile</a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="help-card">
+                    <strong>Need help?</strong>
+                    <p>Our team is ready to assist you.</p>
+                    <a href="mailto:help@carepoint.example">Contact support</a>
+                </div>
+                <button id="logout" class="logout">↪ Sign out</button>
+            </div>
+        </aside>
+
+        <section class="main-area">
+            <header class="topbar">
+                <button id="menuToggle" class="menu-toggle" aria-label="Open navigation">☰</button>
+                <div>
+                    <strong>Patient Portal</strong>
+                    <p>Care that keeps you connected.</p>
+                </div>
+                <div class="top-user">
+                    <span class="avatar" id="topAvatar">P</span>
+                    <div><strong id="topName">Patient</strong><small>Patient</small></div>
+                </div>
+            </header>
+
+            <div class="content">
+
+                <!-- OVERVIEW -->
+                <section class="page-section" id="overview">
+                    <div class="welcome">
+                        <div>
+                            <span class="eyebrow">YOUR HEALTH SPACE</span>
+                            <h1>Hello, <span id="welcomeName">Patient</span> 👋</h1>
+                            <p>Here's an overview of your healthcare activities.</p>
+                        </div>
+                        <button class="btn white" data-go="appointments">+ Book appointment</button>
+                    </div>
+
+                    <div class="stats-grid">
+                        <article class="stat-card">
+                            <div class="stat-icon blue">▣</div>
+                            <p>Total appointments</p>
+                            <h2 id="totalAppointments">0</h2>
+                            <small>All your bookings</small>
+                        </article>
+                        <article class="stat-card">
+                            <div class="stat-icon green">✓</div>
+                            <p>Upcoming appointments</p>
+                            <h2 id="upcomingAppointments">0</h2>
+                            <small>Future scheduled visits</small>
+                        </article>
+                        <article class="stat-card">
+                            <div class="stat-icon purple">♙</div>
+                            <p>Available doctors</p>
+                            <h2 id="doctorCount">6</h2>
+                            <small>Across different specialties</small>
+                        </article>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <article class="panel">
+                            <div class="panel-heading">
+                                <div>
+                                    <h3>Upcoming appointments</h3>
+                                    <p>Your next scheduled visits</p>
+                                </div>
+                                <button class="text-btn" data-go="appointments">View all →</button>
+                            </div>
+                            <div id="upcomingList"></div>
+                        </article>
+
+                        <article class="panel">
+                            <div class="panel-heading">
+                                <div>
+                                    <h3>Appointment overview</h3>
+                                    <p>Your booking statistics</p>
+                                </div>
+                            </div>
+                            <div class="chart-area">
+                                <div id="pieChart" class="pie-chart"></div>
+                                <div id="chartLegend" class="chart-legend"></div>
+                            </div>
+                            <p class="chart-caption">Based on your recorded appointments.</p>
+                        </article>
+                    </div>
+
+                    <article class="panel quick-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h3>Explore our doctors</h3>
+                                <p>Find the right care for you.</p>
+                            </div>
+                            <button class="text-btn" data-go="doctors">All doctors →</button>
+                        </div>
+                        <div id="featuredDoctors" class="doctor-grid"></div>
+                    </article>
+                </section>
+
+                <!-- APPOINTMENTS -->
+                <section class="page-section hidden" id="appointments">
+                    <div class="page-heading">
+                        <div><span class="eyebrow">YOUR VISITS</span>
+                            <h1>Appointments</h1>
+                            <p>Book, view or cancel your appointments.</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid booking-grid">
+                        <article class="panel">
+                            <h3>Book an appointment</h3>
+                            <p class="muted">Choose a doctor, date and available time.</p>
+                            <form id="appointmentForm">
+                                <label for="doctorSelect">Select doctor</label>
+                                <select id="doctorSelect" required></select>
+
+                                <label for="appointmentDate">Appointment date</label>
+                                <input id="appointmentDate" type="date" required>
+
+                                <label for="appointmentTime">Available time</label>
+                                <select id="appointmentTime" required>
+                                    <option value="">Choose a time</option>
+                                    <option>09:00</option>
+                                    <option>10:00</option>
+                                    <option>11:00</option>
+                                    <option>12:00</option>
+                                    <option>14:00</option>
+                                    <option>15:00</option>
+                                </select>
+
+                                <label for="appointmentReason">Reason for visit</label>
+                                <textarea id="appointmentReason" rows="3"
+                                    placeholder="Briefly describe your reason (optional)"></textarea>
+
+                                <button class="btn primary full" type="submit">Confirm appointment</button>
+                                <p id="bookingMessage" class="message" aria-live="polite"></p>
+                            </form>
+                        </article>
+
+                        <article class="panel">
+                            <div class="panel-heading">
+                                <div>
+                                    <h3>Booking information</h3>
+                                    <p>Before confirming your visit</p>
+                                </div>
+                            </div>
+                            <div class="info-item"><span>01</span>
+                                <div><strong>Choose a specialist</strong>
+                                    <p>Select a doctor for your healthcare needs.</p>
+                                </div>
+                            </div>
+                            <div class="info-item"><span>02</span>
+                                <div><strong>Select a date and time</strong>
+                                    <p>Choose your preferred appointment slot.</p>
+                                </div>
+                            </div>
+                            <div class="info-item"><span>03</span>
+                                <div><strong>Review your booking</strong>
+                                    <p>Check your appointment below after booking.</p>
+                                </div>
+                            </div>
+                            <div class="notice">ⓘ This demonstration does not contact real doctors or confirm a real
+                                hospital visit.</div>
+                        </article>
+                    </div>
+
+                    <article class="panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h3>Your appointment history</h3>
+                                <p>All recorded bookings</p>
+                            </div>
+                        </div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Doctor</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="appointmentRows"></tbody>
+                            </table>
+                        </div>
+                        <p id="emptyAppointments" class="empty-state">No appointments yet. Book your first visit above.
+                        </p>
+                    </article>
+                </section>
+
+                <!-- DOCTORS -->
+                <section class="page-section hidden" id="doctors">
+                    <div class="page-heading">
+                        <div><span class="eyebrow">OUR MEDICAL TEAM</span>
+                            <h1>Find a doctor</h1>
+                            <p>Explore our sample medical specialists.</p>
+                        </div>
+                    </div>
+                    <input id="doctorSearch" class="search-input" placeholder="Search by name or specialty..."
+                        aria-label="Search doctors">
+                    <div id="allDoctors" class="doctor-grid all-doctors"></div>
+                    <p id="noDoctors" class="empty-state hidden">No doctors match your search.</p>
+                </section>
+
+                <!-- SERVICES -->
+                <section class="page-section hidden" id="services">
+                    <div class="page-heading">
+                        <div><span class="eyebrow">WHAT WE OFFER</span>
+                            <h1>Medical services</h1>
+                            <p>Healthcare services in one place.</p>
+                        </div>
+                    </div>
+                    <div class="service-grid">
+                        <article class="panel service-card"><span>♡</span>
+                            <h3>General consultation</h3>
+                            <p>Initial assessment and general health guidance.</p>
+                        </article>
+                        <article class="panel service-card"><span>✚</span>
+                            <h3>Emergency care</h3>
+                            <p>Emergency assistance through the hospital's emergency team.</p>
+                        </article>
+                        <article class="panel service-card"><span>⌕</span>
+                            <h3>Laboratory services</h3>
+                            <p>Laboratory investigations as prescribed by a clinician.</p>
+                        </article>
+                        <article class="panel service-card"><span>♧</span>
+                            <h3>Paediatrics</h3>
+                            <p>Healthcare services for infants, children and adolescents.</p>
+                        </article>
+                        <article class="panel service-card"><span>♡</span>
+                            <h3>Cardiology</h3>
+                            <p>Assessment and care for heart-related conditions.</p>
+                        </article>
+                        <article class="panel service-card"><span>◎</span>
+                            <h3>Women's health</h3>
+                            <p>Women's health consultations and preventive care.</p>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- PROFILE -->
+                <section class="page-section hidden" id="profile">
+                    <div class="page-heading">
+                        <div><span class="eyebrow">ACCOUNT SETTINGS</span>
+                            <h1>My profile</h1>
+                            <p>Manage your basic account details.</p>
+                        </div>
+                    </div>
+                    <article class="panel profile-panel">
+                        <div class="large-avatar" id="profileAvatar">P</div>
+                        <h3>Patient information</h3>
+                        <form id="profileForm">
+                            <label for="profileName">Full name</label>
+                            <input id="profileName" required>
+                            <label for="profileEmail">Email address</label>
+                            <input id="profileEmail" type="email" disabled>
+                            <button class="btn primary" type="submit">Save changes</button>
+                            <p id="profileMessage" class="message" aria-live="polite"></p>
+                        </form>
+                    </article>
+                </section>
+
+                <footer class="footer">
+                    <span>© 2026 CarePoint Hospital</span>
+                    <span>Compassionate care, every day.</span>
+                </footer>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="./script.js/script.js"></script>
+</body>
+
+</html>
